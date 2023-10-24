@@ -1,62 +1,260 @@
-﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html><head></head><body>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Fridge</title>
+</head>
+
+<style>
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'poppins';
+    display: flex;
+    justify-content: center;
+    width: 850px;
+    height: 90vh;
+    margin: auto;
+    align-items: center;
+    background-color: lightgrey;
+}
+
+.fridgeSectionLarge {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    border: 1px solid white;
+    padding: 2rem 3rem;
+    background-color: beige;
+}
+
+.timedate {
+    width: 20%;
+}
+
+#title {
+    color: black;
+    padding: 0.9rem 0;
+}
+
+.fridgeSectionLarge h1 {
+    text-align: center;
+}
+
+.fridgeSectionSmall {
+    display: flex;
+    justify-content: space-between;
+}
+
+#mainSection {
+    padding: 1rem 0;
+    margin-bottom: 0.5rem;
+}
+
+.fridgeSectionSmall input {
+    background: white;
+    border: none;
+    font-size: 1rem;
+    border: 1px solid lightblue;
+    padding: 0.3rem 1rem;
+    cursor: pointer;
+    font-size: 1.1rem;
+    border-radius: 5px;
+}
+
+#onOffButton {
+    color: white;
+    background-color: blue !important;
+    border: 0px solid lightblue;
+    transition: 0.5s ease-in-out;
+}
+
+#onOffButton:hover {
+    background-color: white !important;
+    color: blue;
+}
+
+.fridgeButton {
+    transition: 0.3s ease-in-out;
+}
+
+.fridgeButton:hover {
+    background-color: white !important;
+    color: blue !important;
+}
+
+.fridgeSectionSmall div {
+    display: flex;
+}
+
+img {
+    width: 400px;
+}
+</style>
 
 
-
-    
-    
-    
-
-
-
-
-
-
+<body onLoad="onLoad()">
     <div class="fridgeSectionLarge">
         <h1>Smart Fridge</h1>
-        <div class="fridgeSectionSmall">
-            
+        <div id="dateTimeSection" class="fridgeSectionSmall">
+            <input type="button" onclick="clickOnOffButton()" id="onOffButton" value="Off">
             <div class="timedate">
-                <p class="dateTime">--:--</p>
-                <p class="dateTime">--:--</p>
+                <p id="date" class="dateTime">--:--</p>
+                <p id="clock" class="dateTime">--:--</p>
             </div>
 
         </div>
-        <div class="title-content">
-            <h2>Title</h2>
-            <div class="contentArea"></div>
+        <div id="mainSection" class="title-content">
+            <h2 id="title">Title</h2>
+            <div class="contentArea" id="contentArea"></div>
         </div>
-        <div class="fridgeSectionSmall">
-            
-            
-            
-            
+        <div id="buttonSection" class="fridgeSectionSmall">
+            <input type="button" onclick="clickButton('tempButton')" id="tempButton" value="Temperature"
+                class="fridgeButton">
+            <input type="button" onclick="clickButton('insideButton')" id="insideButton" value="Inside View"
+                class="fridgeButton">
+            <input type="button" onclick="clickButton('tvButton')" id="tvButton" value="View Tv" class="fridgeButton">
+            <input type="button" onclick="clickButton('browserButton')" id="browserButton" value="Browser"
+                class="fridgeButton">
         </div>
     </div>
-    
+    <script src="./script.js"></script>
+</body>
 
+<script>
+function startClock() {
+    setInterval(clockTick, 1000);
+    checkDate()
+}
 
+function clockTick() {
+    var date = new Date();
+    var hours = date.getHours();
+    var mins = date.getMinutes();
+    var secs = date.getSeconds();
+    var timeString = hours + ":" + mins;
+    var clockElement = document.getElementById("clock");
+    clockElement.textContent = timeString;
+}
 
+function checkDate() {
+    var date = new Date();
+    var month = date.getMonth();
+    var day = date.getDate();
+    var weekDay = date.getDay();
+    switch (weekDay) {
+        case 1:
+            weekDay = "Monday";
+            break;
+        case 2:
+            weekDay = "Tuesday";
+            break;
+        case 3:
+            weekDay = "Wednesday";
+            break;
+        case 4:
+            weekDay = "Thursday";
+            break;
+        case 5:
+            weekDay = "Friday";
+            break;
+        case 6:
+            weekDay = "Saturday";
+            break;
+        case 7:
+            weekDay = "Sunday";
+            break;
+        default:
+            break;
+    }
+
+    var dateString = weekDay + " " + month + "/" + day;
+    var dateElement = document.getElementById("date");
+    dateElement.textContent = dateString;
+}
+
+function clickOnOffButton() {
+    var button = document.getElementById("onOffButton");
+    if (button.value === "On") {
+        button.value = "Off";
+        button.style.backgroundColor = "lightcorol"; 
+        document.getElementById("title").textContent = "System Off";
+        document.getElementById("contentArea").textContent = "";
+        resetColors();
+
+        document.getElementById("tempButton").setAttribute("onClick", "");
+        document.getElementById("insideButton").setAttribute("onClick", "");
+        document.getElementById("tvButton").setAttribute("onClick", "");
+        document.getElementById("browserButton").setAttribute("onClick", "");
+    } else {
+        button.value = "On";
+        clickButton("tempButton");
+        button.style.backgroundColor = "white";
+
+        document.getElementById("tempButton").setAttribute("onClick", "clickButton('tempButton')");
+        document.getElementById("insideButton").setAttribute("onClick", "clickButton('insideButton')");
+        document.getElementById("tvButton").setAttribute("onClick", "clickButton('tvButton')");
+        document.getElementById("browserButton").setAttribute("onClick", "clickButton('browserButton')");
+    }
+}
+
+function clickButton(id) {
+    resetColors();
+    var title = document.getElementById("title");
+    var content = document.getElementById("contentArea");
+    switch (id) {
+        case "tempButton":
+            title.textContent = "Temperature";
+            content.innerHTML = `Current Temperature: 32&deg<br><img src="https://i.ibb.co/bgPB0kJ/weather-thermometer-with-hot-temperature-flat-illustration-vector.jpg"/>`
+            break;
+        case "insideButton":
+            title.textContent = "Inside View";
+            content.innerHTML = `<img src="https://www.foodandwine.com/thmb/J4By9T9p3HCb6Svl3b9qczg4ZpQ=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/Nancy-Chef-Fridge-Lead-FT-Blog0520-377bd680d254402cb6dbc52f9413f32c.jpg"/>`
+            break;
+        case "tvButton":
+            title.textContent = "Tv";
+            content.innerHTML = `<img src="https://media-cldnry.s-nbcnews.com/image/upload/t_fit-760w,f_auto,q_auto:best/rockcms/2022-07/the-office-deleted-scene-bn-220704-8af08d.jpg"/>`
+            break;
+        case "browserButton":
+            title.textContent = "Browser";
+            content.innerHTML = `<img src="https://www.google.com/chrome/static/images/dark-mode/chrome-classic.png"/>`
+            break;
+        default:
+            title.textContent = "";
+            content.textContent = "";
+            break;
+    }
+    var buttonElement = document.getElementById(id);
+    buttonElement.style.backgroundColor = "#0086ff";
+    buttonElement.style.color = "white"
+}
+
+function resetColors() {
+    document.getElementById("tempButton").style.backgroundColor = "white";
+    document.getElementById("tempButton").style.color = "black";
+    document.getElementById("insideButton").style.backgroundColor = "white";
+    document.getElementById("insideButton").style.color = "black";
+    document.getElementById("tvButton").style.backgroundColor = "white";
+    document.getElementById("tvButton").style.color = "black";
+    document.getElementById("browserButton").style.backgroundColor = "white";
+    document.getElementById("browserButton").style.color = "black";
+}
+
+function onLoad() {
+    clickOnOffButton();
+    startClock();
+}
+</script>
 
 <footer>
-    <hr/>
+    <hr>
         <small>A. Song - 10/16/2023</small>
 </footer>
 
-
-
-<script type="module" src="https://s.brightspace.com/lib/bsi/20.23.10-217/unbundled/mathjax.js"></script><script type="text/javascript">document.addEventListener('DOMContentLoaded', function() {
-					if (document.querySelector('math') || /\$\$|\\\(|\\\[|\\begin{|\\ref{|\\eqref{/.test(document.body.innerHTML)) {
-						document.querySelectorAll('mspace[linebreak="newline"]').forEach(elm => {
-							elm.setAttribute('style', 'display: block; height: 0.5rem;');
-						});
-
-						window.D2L.MathJax.loadMathJax({
-							'outputScale': 1.5,
-							'renderLatex': true
-						});
-					}
-				});</script><script type="module" src="https://s.brightspace.com/lib/bsi/20.23.10-217/unbundled/prism.js"></script><script type="text/javascript">document.addEventListener('DOMContentLoaded', function() {
-					document.querySelectorAll('.d2l-code').forEach(code => {
-						window.D2L.Prism.formatCodeElement(code);
-					});
-				});</script></body></html>
+</html>

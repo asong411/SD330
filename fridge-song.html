@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Fridge</title>
+</head>
+
+<style>
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'poppins';
+    display: flex;
+    justify-content: center;
+    width: 850px;
+    height: 90vh;
+    margin: auto;
+    align-items: center;
+    background-color: lightgrey;
+}
+
+.fridgeSectionLarge {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    border: 1px solid white;
+    padding: 2rem 3rem;
+    background-color: beige;
+}
+
+.timedate {
+    width: 20%;
+}
+
+#title {
+    color: black;
+    padding: 0.9rem 0;
+}
+
+.fridgeSectionLarge h1 {
+    text-align: center;
+}
+
+.fridgeSectionSmall {
+    display: flex;
+    justify-content: space-between;
+}
+footer
+{
+    text-align: center;
+}
+#mainSection {
+    padding: 1rem 0;
+    margin-bottom: 0.5rem;
+}
+
+.fridgeSectionSmall input {
+    background: white;
+    border: none;
+    font-size: 1rem;
+    border: 1px solid lightblue;
+    padding: 0.3rem 1rem;
+    cursor: pointer;
+    font-size: 1.1rem;
+    border-radius: 5px;
+}
+
+#onOffButton {
+    color: white;
+    background-color: blue !important;
+    border: 0px solid lightblue;
+    transition: 0.5s ease-in-out;
+}
+
+#onOffButton:hover {
+    background-color: white !important;
+    color: blue;
+}
+
+.fridgeButton {
+    transition: 0.3s ease-in-out;
+}
+
+.fridgeButton:hover {
+    background-color: white !important;
+    color: blue !important;
+}
+
+.fridgeSectionSmall div {
+    display: flex;
+}
+
+img {
+    width: 400px;
+}
+</style>
+
+
+<body onLoad="onLoad()">
+    <div class="fridgeSectionLarge">
+        <h1>Smart Fridge</h1>
+        <div id="dateTimeSection" class="fridgeSectionSmall">
+            <input type="button" onclick="clickOnOffButton()" id="onOffButton" value="Off">
+            <div class="timedate">
+                <p id="currentTime"></p><br/>
+                <button id="toggleTimeFormat">12/24 Format</button>
+           
+            </div>
+
+        </div>
+        <div id="mainSection" class="title-content">
+            <h2 id="title">Title</h2>
+            <div class="contentArea" id="contentArea"></div>
+        </div>
+        <div id="buttonSection" class="fridgeSectionSmall">
+            <input type="button" onclick="clickButton('tempButton')" id="tempButton" value="Temperature"
+                class="fridgeButton">
+                <input type="button" onclick="clickButton('dashboardButton')" id="dashboardButton" value="Main Dashboard"
+                    class="fridgeButton">
+            <input type="button" onclick="clickButton('insideButton')" id="insideButton" value="Inside View"
+                class="fridgeButton">
+            <input type="button" onclick="clickButton('tvButton')" id="tvButton" value="View TV" class="fridgeButton">
+            <input type="button" onclick="clickButton('browserButton')" id="browserButton" value="Browser"
+                class="fridgeButton">
+                <audio id="alarmi" src="alarm.mp3" preload="auto"></audio>
+        </div>
+    <footer>
+        <small>A. Song - 11/07/2023</small>
+    </footer>
+    </div>
+    
+    <script src="./script.js"></script>
+</body>
+
+<script>
+function startClock() {
+    setInterval(clockTick, 1000);
+    checkDate()
+}
+
+function clockTick() {
+    var date = new Date();
+    var hours = date.getHours();
+    var mins = date.getMinutes();
+    var secs = date.getSeconds();
+    var timeString = hours + ":" + mins;
+    var clockElement = document.getElementById("clock");
+    clockElement.textContent = timeString;
+}
+
+function checkDate() {
+    var date = new Date();
+    var month = date.getMonth();
+    var day = date.getDate();
+    var weekDay = date.getDay();
+    switch (weekDay) {
+        case 1:
+            weekDay = "Monday";
+            break;
+        case 2:
+            weekDay = "Tuesday";
+            break;
+        case 3:
+            weekDay = "Wednesday";
+            break;
+        case 4:
+            weekDay = "Thursday";
+            break;
+        case 5:
+            weekDay = "Friday";
+            break;
+        case 6:
+            weekDay = "Saturday";
+            break;
+        case 7:
+            weekDay = "Sunday";
+            break;
+        default:
+            break;
+    }
+
+    var dateString = weekDay + " " + month + "/" + day;
+    var dateElement = document.getElementById("date");
+    dateElement.textContent = dateString;
+}
+
+function clickOnOffButton() {
+    var button = document.getElementById("onOffButton");
+    if (button.value === "On") {
+        button.value = "Off";
+        button.style.backgroundColor = "lightcorol"; 
+        document.getElementById("title").textContent = "System Off";
+        document.getElementById("contentArea").textContent = "";
+        resetColors();
+        document.getElementById("dashboardButton").setAttribute("onClick", "");
+        document.getElementById("tempButton").setAttribute("onClick", "");
+        document.getElementById("insideButton").setAttribute("onClick", "");
+        document.getElementById("tvButton").setAttribute("onClick", "");
+        document.getElementById("browserButton").setAttribute("onClick", "");
+    } else {
+        button.value = "On";
+        clickButton("tempButton");
+        button.style.backgroundColor = "white";
+        document.getElementById("dashboardButton").setAttribute("onClick", "clickButton('dashboardButton')");
+        document.getElementById("tempButton").setAttribute("onClick", "clickButton('tempButton')");
+        document.getElementById("insideButton").setAttribute("onClick", "clickButton('insideButton')");
+        document.getElementById("tvButton").setAttribute("onClick", "clickButton('tvButton')");
+        document.getElementById("browserButton").setAttribute("onClick", "clickButton('browserButton')");
+
+    }
+}
+
+function clickButton(id) {
+    resetColors();
+    var title = document.getElementById("title");
+    var content = document.getElementById("contentArea");
+    switch (id) {
+        case "dashboardButton":
+            title.textContent = "Main Dashboard";
+            content.innerHTML =`Current Weather: Sunny
+             <h3>Minute Timer</h3>
+    <div id="timer">
+        <p>0:60</p>
+    </div>
+    <button id="startTimer">Start Timer</button>
+    <audio id="alarm" src="alarm.mp3" preload="auto"></audio>
+     <div id="shopping-list">
+            <h4>Shopping List</h4>
+            <ul id="shoppingItems">
+                <li>Item 1</li>
+                <li>Item 2</li>
+                <li>Item 3</li>
+                <li>Item 4</li>
+                <li>Item 5</li>
+            </ul>
+            <input type="text" id="newItem" placeholder="Add an Item">
+            <button id="addItem">Add Item</button>
+             <div id="music-player">
+        <button id="openMusicPlayer">Open Music Player</button>
+    </div>
+        </div>
+            
+            `; 
+            const addItemButton = document.getElementById('addItem');
+            const newItemInput = document.getElementById('newItem');
+            const shoppingList = document.getElementById('shoppingItems');
+
+            addItemButton.addEventListener('click', addItemToList);
+
+            function addItemToList() {
+                const newItemText = newItemInput.value.trim();
+
+                if (newItemText !== '') {
+                    const newItem = document.createElement('li');
+                    newItem.textContent = newItemText;
+                    shoppingList.appendChild(newItem);
+                    newItemInput.value = '';
+                }
+            }
+             const startTimerButton = document.getElementById('startTimer');
+            const timerDisplay = document.getElementById('timer');
+            const alarmSound = document.getElementById('alarm');
+            let timerInterval;
+
+            startTimerButton.addEventListener('click', startTimer);
+
+            function startTimer() {
+                let timeLeft = 60;
+                timerDisplay.textContent = `0:${timeLeft}`;
+                startTimerButton.disabled = true;
+
+                timerInterval = setInterval(function () {
+                    timeLeft--;
+                    timerDisplay.textContent = `0:${timeLeft}`;
+
+                    if (timeLeft === 0) {
+                        clearInterval(timerInterval);
+                        alarmSound.play();
+                        startTimerButton.disabled = false;
+                    }
+                }, 1000);
+            }
+            break;
+        case "tempButton":
+            title.textContent = "Temperature";
+            content.innerHTML = `<p id="temperature">Current Temperature: <span id="tempValue">70</span> °F</p>
+            <button id="toggleTemperatureUnit">Switch to Celsius</button>
+            <button id="increaseTemperature">Increase</button>
+            <button id="decreaseTemperature">Decrease</button>
+            <br/>
+            <img src="https://i.ibb.co/bgPB0kJ/weather-thermometer-with-hot-temperature-flat-illustration-vector.jpg"/>
+            `
+             const temperatureDisplay = document.getElementById('temperature');
+            const temperatureValue = document.getElementById('tempValue');
+            const toggleTemperatureUnitButton = document.getElementById('toggleTemperatureUnit');
+            const increaseTemperatureButton = document.getElementById('increaseTemperature');
+            const decreaseTemperatureButton = document.getElementById('decreaseTemperature');
+            const minTemperature = 60; 
+            const maxTemperature = 90; 
+
+            const randomTemperature = Math.floor(Math.random() * (maxTemperature - minTemperature + 1)) + minTemperature;
+
+            let currentTemperature = randomTemperature;
+              function updateTemperatureDisplay() {
+                temperatureValue.textContent = currentTemperature;
+                temperatureDisplay.textContent = `Current Temperature: ${currentTemperature} ${isCelsius ? '°C' : '°F'}`;
+            }
+
+            let isCelsius = false; // Starts with Fahrenheit
+
+            updateTemperatureDisplay();
+
+            toggleTemperatureUnitButton.addEventListener('click', () => {
+                isCelsius = !isCelsius;
+                updateTemperatureDisplay();
+                toggleTemperatureUnitButton.textContent = isCelsius ? 'Switch to Fahrenheit' : 'Switch to Celsius';
+            });
+
+            increaseTemperatureButton.addEventListener('click', () => {
+                currentTemperature++;
+                updateTemperatureDisplay();
+            });
+
+            decreaseTemperatureButton.addEventListener('click', () => {
+                currentTemperature--;
+                updateTemperatureDisplay();
+            });
+            break;
+        case "insideButton":
+            title.textContent = "Inside View";
+            content.innerHTML = `<img src="https://www.foodandwine.com/thmb/J4By9T9p3HCb6Svl3b9qczg4ZpQ=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/Nancy-Chef-Fridge-Lead-FT-Blog0520-377bd680d254402cb6dbc52f9413f32c.jpg"/>`
+            break;
+        case "tvButton":
+            title.textContent = "TV";
+            content.innerHTML = `<img src="https://media-cldnry.s-nbcnews.com/image/upload/t_fit-760w,f_auto,q_auto:best/rockcms/2022-07/the-office-deleted-scene-bn-220704-8af08d.jpg"/>
+            `
+             var audio = new Audio("tv.mp3");
+           
+                audio.play();
+     
+             
+            break;
+        case "browserButton":
+            title.textContent = "Browser";
+            content.innerHTML = `<img src="https://www.google.com/chrome/static/images/dark-mode/chrome-classic.png"/>`
+            break;
+        default:
+            title.textContent = "";
+            content.textContent = "";
+            break;
+    }
+    var buttonElement = document.getElementById(id);
+    buttonElement.style.backgroundColor = "#0086ff";
+    buttonElement.style.color = "white"
+}
+
+function resetColors() {
+    document.getElementById("tempButton").style.backgroundColor = "white";
+    document.getElementById("tempButton").style.color = "black";
+    
+    document.getElementById("dashboardButton").style.backgroundColor = "white";
+    document.getElementById("dashboardButton").style.color = "black";
+    document.getElementById("insideButton").style.backgroundColor = "white";
+    document.getElementById("insideButton").style.color = "black";
+    document.getElementById("tvButton").style.backgroundColor = "white";
+    document.getElementById("tvButton").style.color = "black";
+    document.getElementById("browserButton").style.backgroundColor = "white";
+    document.getElementById("browserButton").style.color = "black";
+}
+
+function onLoad() {
+    clickOnOffButton();
+    startClock();
+} const currentTimeDisplay = document.getElementById('currentTime');
+    const toggleTimeFormatButton = document.getElementById('toggleTimeFormat');
+    let is24HourFormat = true;
+
+        // Function to update the time display
+        function updateTimeDisplay() {
+            const now = new Date();
+            const hours = now.getHours();
+            const minutes = now.getMinutes();
+            const seconds = now.getSeconds();
+
+            if (is24HourFormat) {
+                currentTimeDisplay.textContent = `${hours}:${minutes}:${seconds}`;
+            } else {
+                const period = hours >= 12 ? 'PM' : 'AM';
+                const displayHours = hours % 12 || 12;
+                currentTimeDisplay.textContent = `${displayHours}:${minutes}:${seconds} ${period}`;
+            }
+        }
+
+        // Initial time display
+        updateTimeDisplay();
+
+        // Update time every second
+        setInterval(updateTimeDisplay, 1000);
+
+        toggleTimeFormatButton.addEventListener('click', () => {
+            is24HourFormat = !is24HourFormat;
+            updateTimeDisplay();
+        });
+</script>
+
+
+
+</html>

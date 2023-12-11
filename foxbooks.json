@@ -1,208 +1,182 @@
 {
-     "Courses":
-      {
-            "ART101L":
-            {
-                  "Course ID": 11456,
-                  "Title": "Fundamental Art & Design",
-                  "Semester": "Fall",
-                  "Professor": "Mandolyn Rosen",
-                  "Section": 111,
-                  "Hours": 3,
-            },
-            "ART110N":
-            {
-                  "Course ID": 10012 ,
-                  "Title": "Basic Drawing",
-                  "Semester": "Fall",
-                  "Professor": "Malgorzata Oakes",
-                  "Section": 112,
-                  "Hours": 3,
-            },
-            "BIOL101L":
-            {
-                  "Course ID": 11695,
-                  "Title": "Topics In Biology",
-                  "Semester": "Spring",
-                  "Professor": "Shannon Considine",
-                  "Section": 113,
-                  "Hours": 3,
-            },
-            "BIOL130L":
-            {
-                  "Course ID": 12297,
-                  "Title": "General Biology I",
-                  "Semester": "Spring",
-                  "Professor": "Elizabeth Godin",
-                  "Section": 114,
-                  "Hours": 3,   
-            },
-            "BUS100N":
-            {
-                  "Course ID": 10030,
-                  "Title": "Introduction to Business & Management",
-                  "Semester": "Fall",
-                  "Professor": "Debra Zambito",
-                  "Section": 112,
-                  "Hours": 3,
-            },
-            "BUS120N":
-            {
-                  "Course ID": 13039,
-                  "Title": "Financial Literacy",
-                  "Semester": "Fall",
-                  "Professor": "John Finnigan",
-                  "Section": 111,
-                  "Hours": 3,
-            },
-            "CMPT103L":
-            {
-                  "Course ID": 10465,
-                  "Title": "Technology For 21st Century",
-                  "Semester": "Spring",
-                  "Professor": "Cheryl Lown",
-                  "Section": 114,
-                  "Hours": 4,
-            },
-            "CMPT120L":
-            {
-                  "Course ID": 11513,
-                  "Title": "Introduction To Programming",
-                  "Semester": "Fall",
-                  "Professor": "Reza Sadeghi",
-                  "Section": 112,
-                  "Hours": 4,
-            }
-      },
-      "Textbooks":
-      {
-            "ART1":
-            {
-                  "ISBN": 3478234,
-                  "Title": "Understanding Art",
-                  "Author": "Mary Hopewell",
-                  "Course_ID": 593749,
-                  "Release_Date": "09/17/17"
-            },
-            "ART2":
-            {
-                  "ISBN": 23497523,
-                  "Title": "Art Is For Everybody",
-                  "Author": "Gary Batum",
-                  "Course_ID": 8927432,
-                  "Release_Date": "11/02/21"      
-            },
-            "ART3":
-            {
-                  "ISBN": 9123743,
-                  "Title": "World Of Art",
-                  "Author": "Ramsay Coswald",
-                  "Course_ID": 6439234,
-                  "Release_Date": "10/21/14"
-            },
-            "ART4":
-            {
-                  "ISBN": 7234693,
-                  "Title": "Living With Art",
-                  "Author": "Aidan Laswell",
-                  "Course_ID": 57432,
-                  "Release_Date": "03/18/22"
-            },
-            "BIOL1":
-            {
-                  "ISBN": 183482,
-                  "Title": "Principles Of Biology",
-                  "Author": "Tessa Thompson",
-                  "Course_ID": 428242,
-                  "Release_Date": "08/20/14"
-            },
-            "BIOL2":
-            {
-                  "ISBN": 6923944,
-                  "Title": "Modern Biology",
-                  "Author": "Jake Howard",
-                  "Course_ID": 723942,
-                  "Release_Date": "03/23/01"
-            },
-            "BIOL3":
-            {
-                  "ISBN": 3924243,
-                  "Title": "The Unity and Diversity of Life",
-                  "Author": "Casey Ackerman",
-                  "Course_ID": 912382,
-                  "Release_Date": "12/22/15"
-            },
-            "BIOL4":
-            {
-                  "ISBN": 2348953,
-                  "Title": "Exploring Life",
-                  "Author": "Joseph Gordon",
-                  "Course_ID": 129383,
-                  "Release_Date": "01/06/19"
-            },
-            "BUS1":
-            {
-                  "ISBN": 72346924,
-                  "Title": "Business Law",
-                  "Author": "Jason Parsons",
-                  "Course_ID": 5927342,
-                  "Release_Date": "04/08/06"
-            },
-            "BUS2":
-            {
-                  "ISBN": 2498234,
-                  "Title": "Foundations Of Business",
-                  "Author": "Tamara Singh",
-                  "Course_ID": 9187323,
-                  "Release_Date": "10/28/17"
-            },
-            "BUS3":
-            {
-                  "ISBN": 438592,
-                  "Title": "Introduction To Finance",
-                  "Author": "Jay Flynn",
-                  "Course_ID": 823468,
-                  "Release_Date": "06/24/20"
-            },
-            "BUS4":
-            {
-                  "ISBN": 612389,
-                  "Title": "Understanding Financial Literacy",
-                  "Author": "Peggy Walker",
-                  "Course_ID": 198245,
-                  "Release_Date": "05/11/13"
-            },
-            "CMPT1":
-            {
-                  "ISBN": 92147,
-                  "Title": "Games for Dummies",
-                  "Author": "Otis Gardner",
-                  "Course_ID": 827344,
-                  "Release_Date": "11/25/16"
-            },
-            "CMPT2":
-            {
-                  "ISBN": 12398,
-                  "Title": "Computer Systems",
-                  "Author": "Vincent Morales",
-                  "Course_ID": 623482,
-                  "Release_Date": "07/12/16"
-            },
-            "CMPT3":
-            {
-                  "ISBN": 723841,
-                  "Title": "Fundamentals Of Information Systems",
-                  "Author": "Kaylee Bush",
-                  "Course_ID": 3948537,
-                  "Release_Date": "01/19/22"
-            },
-            "CMPT4":
-            {
-                  "ISBN": 2378423,
-                  "Title": "The Principles Of Computer Hardware",
-                  "Author": "Ethan Robles",
-                  "Course_ID": 623843,
-                  "Release_Date": "02/27/16"
-            }
-      }
+  "Courses": {
+    "ART101L": {
+      "Course ID": 11456,
+      "Title": "Fundamental Art & Design",
+      "Semester": "Fall",
+      "Professor": "Mandolyn Rosen",
+      "Section": 111,
+      "Hours": 3
+    },
+    "ART110N": {
+      "Course ID": 10012,
+      "Title": "Basic Drawing",
+      "Semester": "Fall",
+      "Professor": "Malgorzata Oakes",
+      "Section": 112,
+      "Hours": 3
+    },
+    "BIOL101L": {
+      "Course ID": 11695,
+      "Title": "Topics In Biology",
+      "Semester": "Spring",
+      "Professor": "Shannon Considine",
+      "Section": 113,
+      "Hours": 3
+    },
+    "BIOL130L": {
+      "Course ID": 12297,
+      "Title": "General Biology I",
+      "Semester": "Spring",
+      "Professor": "Elizabeth Godin",
+      "Section": 114,
+      "Hours": 3
+    },
+    "BUS100N": {
+      "Course ID": 10030,
+      "Title": "Introduction to Business & Management",
+      "Semester": "Fall",
+      "Professor": "Debra Zambito",
+      "Section": 112,
+      "Hours": 3
+    },
+    "BUS120N": {
+      "Course ID": 13039,
+      "Title": "Financial Literacy",
+      "Semester": "Fall",
+      "Professor": "John Finnigan",
+      "Section": 111,
+      "Hours": 3
+    },
+    "CMPT103L": {
+      "Course ID": 10465,
+      "Title": "Technology For 21st Century",
+      "Semester": "Spring",
+      "Professor": "Cheryl Lown",
+      "Section": 114,
+      "Hours": 4
+    },
+    "CMPT120L": {
+      "Course ID": 11513,
+      "Title": "Introduction To Programming",
+      "Semester": "Fall",
+      "Professor": "Reza Sadeghi",
+      "Section": 112,
+      "Hours": 4
+    }
+  },
+  "Textbooks": {
+    "ART1": {
+      "ISBN": 3478234,
+      "Title": "Understanding Art",
+      "Author": "Mary Hopewell",
+      "Course_ID": 593749,
+      "Release_Date": "09/17/17"
+    },
+    "ART2": {
+      "ISBN": 23497523,
+      "Title": "Art Is For Everybody",
+      "Author": "Gary Batum",
+      "Course_ID": 8927432,
+      "Release_Date": "11/02/21"
+    },
+    "ART3": {
+      "ISBN": 9123743,
+      "Title": "World Of Art",
+      "Author": "Ramsay Coswald",
+      "Course_ID": 6439234,
+      "Release_Date": "10/21/14"
+    },
+    "ART4": {
+      "ISBN": 7234693,
+      "Title": "Living With Art",
+      "Author": "Aidan Laswell",
+      "Course_ID": 57432,
+      "Release_Date": "03/18/22"
+    },
+    "BIOL1": {
+      "ISBN": 183482,
+      "Title": "Principles Of Biology",
+      "Author": "Tessa Thompson",
+      "Course_ID": 428242,
+      "Release_Date": "08/20/14"
+    },
+    "BIOL2": {
+      "ISBN": 6923944,
+      "Title": "Modern Biology",
+      "Author": "Jake Howard",
+      "Course_ID": 723942,
+      "Release_Date": "03/23/01"
+    },
+    "BIOL3": {
+      "ISBN": 3924243,
+      "Title": "The Unity and Diversity of Life",
+      "Author": "Casey Ackerman",
+      "Course_ID": 912382,
+      "Release_Date": "12/22/15"
+    },
+    "BIOL4": {
+      "ISBN": 2348953,
+      "Title": "Exploring Life",
+      "Author": "Joseph Gordon",
+      "Course_ID": 129383,
+      "Release_Date": "01/06/19"
+    },
+    "BUS1": {
+      "ISBN": 72346924,
+      "Title": "Business Law",
+      "Author": "Jason Parsons",
+      "Course_ID": 5927342,
+      "Release_Date": "04/08/06"
+    },
+    "BUS2": {
+      "ISBN": 2498234,
+      "Title": "Foundations Of Business",
+      "Author": "Tamara Singh",
+      "Course_ID": 9187323,
+      "Release_Date": "10/28/17"
+    },
+    "BUS3": {
+      "ISBN": 438592,
+      "Title": "Introduction To Finance",
+      "Author": "Jay Flynn",
+      "Course_ID": 823468,
+      "Release_Date": "06/24/20"
+    },
+    "BUS4": {
+      "ISBN": 612389,
+      "Title": "Understanding Financial Literacy",
+      "Author": "Peggy Walker",
+      "Course_ID": 198245,
+      "Release_Date": "05/11/13"
+    },
+    "CMPT1": {
+      "ISBN": 92147,
+      "Title": "Games for Dummies",
+      "Author": "Otis Gardner",
+      "Course_ID": 827344,
+      "Release_Date": "11/25/16"
+    },
+    "CMPT2": {
+      "ISBN": 12398,
+      "Title": "Computer Systems",
+      "Author": "Vincent Morales",
+      "Course_ID": 623482,
+      "Release_Date": "07/12/16"
+    },
+    "CMPT3": {
+      "ISBN": 723841,
+      "Title": "Fundamentals Of Information Systems",
+      "Author": "Kaylee Bush",
+      "Course_ID": 3948537,
+      "Release_Date": "01/19/22"
+    },
+    "CMPT4": {
+      "ISBN": 2378423,
+      "Title": "The Principles Of Computer Hardware",
+      "Author": "Ethan Robles",
+      "Course_ID": 623843,
+      "Release_Date": "02/27/16"
+    }
+  }
 }

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Books</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <div class="navbar">
+        <div></div>
+        <img
+          src="images/add-to-cart.png"
+          width="80"
+          height="60"
+          alt="cartIcon"
+        />
+      </div>
+      <div class="navigation_menu">
+        <a class="nav_link" href="/home.html">Home</a>
+        <a class="nav_link" href="/booksList.html">Books</a>
+        <a class="nav_link" href="/courses.html">Courses</a>
+        <a class="nav_link" href="/error.html">About Us</a>
+        <a class="nav_link" href="/error.html">Contact</a>
+      </div>
+      <div class="breadcrumb_container">
+        <div class="breadcrumb old">Home</div>
+        <img src="images/front_arrow.png" alt="arrow_image" height="80px" />
+        <div class="breadcrumb new">Books</div>
+      </div>
+      <div class="book_list singleBook">
+        <div class="header">
+          <a href="/booksList.html">
+            <img src="images/back_arrow.png" width="60px" alt="" />
+          </a>
+          <h1 id="book_title"></h1>
+        </div>
+        <div class="book_info_container" id="book_info_container"></div>
+      </div>
+      <div class="books_list">
+        <h1>Book List</h1>
+        <div class="books" id="books"></div>
+      </div>
+    </div>
+    <footer>A. Song - 12/04/2023</footer>
+  </body>
+  <script>
+    fetch("foxbooks.json")
+      .then((response) => response.json())
+      .then((jsonData) => {
+        const textbooks = jsonData?.Textbooks;
+        const bookListContainer = document.getElementById("books");
+        if (textbooks) {
+          Object.values(textbooks).map((bookInfo) => {
+            const key = Object.keys(textbooks).find(
+              (key) => textbooks[key] === bookInfo
+            );
+            const bookAnchor = document.createElement("a");
+            bookAnchor.href = `/booksList.html?isbn=${bookInfo.ISBN}&section=${key}`;
+            bookAnchor.classList.add("book");
+            bookAnchor.innerHTML = `${bookInfo.Title}`;
+            bookListContainer.appendChild(bookAnchor);
+          });
+        }
+        const isbn = new URLSearchParams(window.location.search).get("isbn");
+        const section = new URLSearchParams(window.location.search).get(
+          "section"
+        );
+        if (isbn && section) {
+          document.querySelector(".book_list.singleBook").style =
+            "display: block";
+        }
+        const bookInfo = textbooks[section];
+        const bookTitle = document.getElementById("book_title");
+        document.title = bookInfo.Title;
+        const bookInfoContainer = document.getElementById(
+          "book_info_container"
+        );
+        bookTitle.innerHTML = bookInfo.Title;
+        const bookInfoKeys = Object.keys(bookInfo);
+        bookInfoKeys.map((key) => {
+          const bookInfoDiv = document.createElement("div");
+          bookInfoDiv.classList.add("book_info");
+          bookInfoDiv.innerHTML = `<span class="book_info_key">${key
+            .split("_")
+            .join(" ")}</span>: ${bookInfo[key]}`;
+          bookInfoContainer.appendChild(bookInfoDiv);
+        });
+      })
+      .catch((error) => console.error("Error fetching data:", error));
+  </script>
+</html>

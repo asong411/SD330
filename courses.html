@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Courses</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <div class="navbar">
+        <div></div>
+        <img
+          src="images/add-to-cart.png"
+          width="80"
+          height="60"
+          alt="cartIcon"
+        />
+      </div>
+      <div class="navigation_menu">
+        <a class="nav_link" href="/home.html">Home</a>
+        <a class="nav_link" href="/booksList.html">Books</a>
+        <a class="nav_link" href="/courses.html">Courses</a>
+        <a class="nav_link" href="/error.html">About Us</a>
+        <a class="nav_link" href="/error.html">Contact</a>
+      </div>
+      <div class="breadcrumb_container">
+        <div class="breadcrumb old">Home</div>
+        <img src="images/front_arrow.png" alt="arrow_image" height="80px" />
+        <div class="breadcrumb new">Courses</div>
+      </div>
+      <div class="course_list singleCourse">
+        <div class="header">
+          <a href="/courses.html">
+            <img src="images/back_arrow.png" width="60px" alt="" />
+          </a>
+          <h1 id="course_title"></h1>
+        </div>
+        <div class="course_info_container" id="course_info_container"></div>
+      </div>
+      <div class="courses_list">
+        <h1>Courses</h1>
+        <div class="courses" id="courses"></div>
+      </div>
+    </div>
+    <footer>A. Song - 12/04/2023</footer>
+  </body>
+  <script>
+    fetch("foxbooks.json")
+      .then((response) => response.json())
+      .then((jsonData) => {
+        const courses = jsonData?.Courses;
+        const corusesListContainer = document.getElementById("courses");
+        if (courses) {
+          Object.values(courses).map((course) => {
+            const key = Object.keys(courses).find(
+              (key) => courses[key] === course
+            );
+            const courseAnchor = document.createElement("a");
+            courseAnchor.href = `/courses.html?course_id=${course["Course ID"]}&section=${key}`;
+            courseAnchor.classList.add("course");
+            courseAnchor.innerHTML = `${course.Title}`;
+            corusesListContainer.appendChild(courseAnchor);
+          });
+        }
+        const isbn = new URLSearchParams(window.location.search).get("isbn");
+        const section = new URLSearchParams(window.location.search).get(
+          "section"
+        );
+        const courseInfo = courses[section];
+        const courseTitle = document.getElementById("course_title");
+        document.title = courseInfo.Title;
+        const courseInfoContainer = document.getElementById(
+          "course_info_container"
+        );
+        courseTitle.innerHTML = courseInfo.Title;
+        const courseInfoKeys = Object.keys(courseInfo);
+        courseInfoKeys.map((key) => {
+          const courseInfoDiv = document.createElement("div");
+          courseInfoDiv.classList.add("course_info");
+          courseInfoDiv.innerHTML = `<span class="course_info_key">${key}</span>: ${courseInfo[key]}`;
+          courseInfoContainer.appendChild(courseInfoDiv);
+        });
+        document.querySelector(".course_list.singleCourse").style =
+          "display: block";
+      })
+      .catch((error) => console.error("Error fetching data:", error));
+  </script>
+</html>

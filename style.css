@@ -1,0 +1,279 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --main-color: #d9e2f3;
+  --button-color: #4472c4;
+  --green-color: #a9d18e;
+  --orange-color: #ed7d31;
+  --blue-color: var(--blue-color);
+}
+
+body {
+  background-color: var(--main-color);
+}
+
+a {
+  text-decoration: none;
+  color: #fff;
+}
+
+ul {
+  list-style: none;
+}
+
+img {
+  object-fit: cover;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 20px 25rem;
+  min-height: 90vh;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  padding: 20px 50px;
+}
+
+.navbar img {
+  margin-left: 0;
+}
+
+.navigation_menu {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 30px;
+}
+
+.nav_link {
+  background-color: var(--button-color);
+  color: white;
+  padding: 1.5rem 5rem;
+  border: 1px solid var(--blue-color);
+  border-radius: 10px;
+  font-size: 18px;
+  white-space: nowrap;
+}
+
+.home .title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0 1rem;
+}
+
+.home .title h1 {
+  font-size: 4rem;
+  color: var(--blue-color);
+}
+
+.home .welcome {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #0070c0;
+  font-size: 1.2rem;
+  gap: 1rem;
+}
+
+.home .homepage_sections {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 5rem;
+  margin-top: 60px;
+}
+
+.home .homepage_sections > div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  padding: 3rem 3rem;
+  border: 1px solid var(--blue-color);
+  border-radius: 40px;
+  background-color: var(--orange-color);
+  min-width: 450px;
+  min-height: 344px;
+}
+
+.home .homepage_sections .new_arrival img {
+  border: 1px solid var(--blue-color);
+}
+.home .homepage_sections .new_arrival div {
+  text-decoration: underline;
+  font-size: 18px;
+  color: white;
+}
+
+.home .about_us_section p {
+  width: 300px;
+  color: black;
+  text-align: center;
+}
+
+.breadcrumb_container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 30px;
+  margin-right: 250px;
+  margin-top: 20px;
+}
+
+.breadcrumb_container .breadcrumb {
+  display: flex;
+  gap: 0 1rem;
+  padding: 1rem 6rem;
+  border: 1px solid var(--blue-color);
+  border-radius: 10px;
+}
+
+.breadcrumb_container .breadcrumb.old {
+  background-color: var(--button-color);
+  color: white;
+}
+
+.breadcrumb_container .breadcrumb.new {
+  background-color: var(--green-color);
+  color: black;
+}
+
+.books_list,
+.book_list,
+.courses_list,
+.course_list {
+  margin-top: 50px;
+  background-color: var(--orange-color);
+  min-width: 100%;
+  text-align: center;
+  border: 1px solid var(--blue-color);
+  border-radius: 30px;
+  padding: 3rem 4rem;
+  color: white;
+}
+.books_list h1,
+.courses_list h1 {
+  margin-bottom: 50px;
+}
+
+.book_list .header,
+.course_list .header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  margin-bottom: 50px;
+}
+
+.book_list .header img,
+.course_list .header img {
+  color: white;
+  position: absolute;
+  left: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.book_list.singleBook,
+.course_list.singleCourse {
+  display: none;
+}
+
+.books,
+.courses {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2rem;
+}
+
+.book,
+.course {
+  gap: 1rem;
+  padding: 1rem 1rem;
+  border: 1px solid var(--blue-color);
+  border-radius: 10px;
+  background-color: var(--button-color);
+  font-size: 19px;
+  font-weight: bold;
+}
+
+.book_info_container,
+.course_info_container {
+  background-color: var(--button-color);
+  text-align: left;
+  padding: 2rem;
+  border-radius: 20px;
+  color: white;
+  font-size: 20px;
+}
+
+.book_info_container .book_info:not(:last-child),
+.course_info_container .course_info:not(:last-child) {
+  margin-bottom: 10px;
+}
+
+.error_page {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 5rem 10rem;
+}
+
+.error_page h1 {
+  font-size: 4rem;
+  color: var(--blue-color);
+}
+
+.error_page h3 {
+  font-size: 1.5rem;
+  color: var(--blue-color);
+  margin-bottom: 50px;
+}
+
+.error_page p {
+  font-size: 2.5rem;
+  color: #99450d;
+  font-weight: bold;
+}
+
+.error_page div {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.error_page div .toHome a {
+  background-color: #f4b183;
+  color: black;
+  padding: 1.5rem 5rem;
+  border: 1px solid var(--blue-color);
+  border-radius: 10px;
+  font-size: 18px;
+  white-space: nowrap;
+}
+
+footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  padding: 1rem 1rem;
+  background-color: white;
+  font-size: 19px;
+  font-weight: bold;
+  margin-top: 50px;
+  width: 100%;
+}
